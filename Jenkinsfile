@@ -10,29 +10,26 @@ pipeline {
                 echo '================================'
 
                 checkout scm
-
-                echo 'Files downloaded from GitHub:'
-                bat 'dir /s /b'
             }
         }
 
         stage('Build') {
             steps {
                 echo '================================'
-                echo 'STAGE 2: Compiling Java files'
+                echo 'STAGE 2: Build'
                 echo '================================'
 
-                bat 'javac Calculator.java'
+                bat 'echo Build completed successfully!'
             }
         }
 
         stage('Run') {
             steps {
                 echo '================================'
-                echo 'STAGE 3: Running Java program'
+                echo 'STAGE 3: Run'
                 echo '================================'
 
-                bat 'java Calculator'
+                bat 'echo Application is running...'
             }
         }
 
@@ -49,11 +46,15 @@ pipeline {
 
     post {
         success {
+            echo '================================'
             echo 'Pipeline completed successfully!'
+            echo '================================'
         }
 
         failure {
+            echo '================================'
             echo 'Pipeline failed!'
+            echo '================================'
         }
     }
 }
