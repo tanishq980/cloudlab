@@ -8,7 +8,11 @@ pipeline {
                 echo '================================'
                 echo 'STAGE 1: Getting code from Git'
                 echo '================================'
+
                 checkout scm
+
+                echo 'Files downloaded from GitHub:'
+                bat 'dir /s /b'
             }
         }
 
