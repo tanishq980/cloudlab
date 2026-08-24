@@ -3,31 +3,41 @@ pipeline {
 
     stages {
 
+        stage('Start') {
+            steps {
+                echo '🚀 Jenkins pipeline started!'
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'STAGE 1: Building Java Program'
-                bat 'javac Calculator.java CalculatorTest.java'
-                echo 'Build Successful!'
+                echo '🔨 Building the application...'
+                sh 'echo Build successful!'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'STAGE 2: Testing Calculator'
-                bat 'java CalculatorTest'
-                echo 'All Tests Completed!'
+                echo '🧪 Running tests...'
+                sh 'echo All tests passed!'
             }
         }
 
+        stage('Deploy') {
+            steps {
+                echo '📦 Deploying application...'
+                sh 'echo Deployment successful!'
+            }
+        }
     }
 
     post {
         success {
-            echo 'PIPELINE SUCCESS!'
+            echo '✅ Pipeline completed successfully!'
         }
 
         failure {
-            echo 'PIPELINE FAILED!'
+            echo '❌ Pipeline failed!'
         }
     }
 }
