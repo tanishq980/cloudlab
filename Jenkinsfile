@@ -3,41 +3,53 @@ pipeline {
 
     stages {
 
-        stage('Start') {
+        stage('Checkout') {
             steps {
-                echo '🚀 Jenkins pipeline started!'
+                echo '================================'
+                echo 'STAGE 1: Getting code from Git'
+                echo '================================'
+                checkout scm
             }
         }
 
         stage('Build') {
             steps {
-                echo '🔨 Building the application...'
-                sh 'echo Build successful!'
+                echo '================================'
+                echo 'STAGE 2: Compiling Java files'
+                echo '================================'
+
+                bat 'javac Calculator.java'
             }
         }
 
-        stage('Test') {
+        stage('Run') {
             steps {
-                echo '🧪 Running tests...'
-                sh 'echo All tests passed!'
+                echo '================================'
+                echo 'STAGE 3: Running Java program'
+                echo '================================'
+
+                bat 'java Calculator'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo '📦 Deploying application...'
-                sh 'echo Deployment successful!'
+                echo '================================'
+                echo 'STAGE 4: Deploy'
+                echo '================================'
+
+                bat 'echo Deployment successful!'
             }
         }
     }
 
     post {
         success {
-            echo '✅ Pipeline completed successfully!'
+            echo 'Pipeline completed successfully!'
         }
 
         failure {
-            echo '❌ Pipeline failed!'
+            echo 'Pipeline failed!'
         }
     }
 }
